@@ -185,13 +185,13 @@ error tolerance to 0.1.
 
 \subsection{Production runs}
 
-For the production runs (phase\_transitions.py) we parallelized the code with
+For the production runs \footnote{phase\_transitions.py} we parallelized the code with
 numba using $@njit(parallel=True)$. We found it easiest to run calculations for
 each temperature in parallel, instead of parallelizing the ising model itself.
 An unfortunate side effect of this was that we were not able to write to file
 after each run of the ising model, so if our run did not finish we would lose
-all the results. We also added a script (timings.py) that estimates the time to
-run phase\_transitions.py with the given parameters so we did not start too time
+all the results. We also added a script \footnote{timings.py} that estimates the time to
+run with the given parameters so we did not start too time
 consuming runs.
 
 Timings with and without parallelization for small grid sizes showed a speedup
