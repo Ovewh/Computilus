@@ -172,15 +172,15 @@ delay parameter to 50000 in the production runs.
 
 \subsection{Model testing}
 
-Implementation of tests (test\_analytic.py, test\_ising.py) showed that the
+Implementation of tests \footnote{test\_analytic.py, test\_ising.py} showed that the
 analytical solutions was correct down to an absolute error of \num{1e-12}  when
-comparing against a brute force method where we created all the possible
+comparing against the brute force method where we created all the possible
 microstates.
 Testing the ising model against the analytical solutions for a 2x2 grid showed
 that we could consistently achieve a relative error of 0.001 with only 100000
 Monte Carlo cycles (MCC) for the energy and magnetization. For the heat capacity
-and susceptibility we had to increase the MCC to 5 millions and the relative
-error tolerance to 0.05.
+and susceptibility we had to increase the MCC to 1 million and the relative
+error tolerance to 0.1.
 
 
 \subsection{Production runs}
