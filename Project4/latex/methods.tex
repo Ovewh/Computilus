@@ -52,12 +52,16 @@ by the following expressions.
   \chi = \frac{1}{k_b T}\left(\braket{M^2}- \braket{M}^2\right)
 \end{eqnarray}
 
+The variance of the energy and magnetisation is defined as the following.
+\begin{eqnarray}
+  \sigma_E^{2} = \left(\braket{E^2} - \braket{E}^2 \right) = \frac{1}{Z}
+  \sum_{i=1}^N E_i e^{\beta E_i^2} - \left(\frac{1}{Z} \sum_{i=1}^N E_i e^{\beta
+  E_i}\right)^2  \\
+  \sigma_M^{2} = \frac{1}{Z} \sum_{i=1}^{N} M^2 e^{-\beta E_i}  - \left(\frac{1}{Z} \sum_{i=1}^{N} M e^{-\beta E_i}  \right)^2
+\end{eqnarray}
 
 
 \subsection{Metropolis algorithm}
-
-The Metropolis algorithm is a
-
 
 
 Since the Ising model is a binary system the number of possible microstates is
