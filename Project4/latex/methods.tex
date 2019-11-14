@@ -14,17 +14,46 @@ something for real systems to.
 The Ising model, without an external magnetic field, is given by
 \cref{eq:ising}, where $E_i$ is the energy of a given microstate s$_k$ and s$_l$ takes values of $\pm 1$, N is the
 number of spins, J is a coupling constant corresponding to the strength of the
-interaction between the neighbouring spins and $<kl>$ means that we are sum over
+interaction between the neighbouring spins and $<kl>$ means that we are summing over
+nearest neighbour only.
+=======
+interaction between the neighbouring spins and $<kl>$ means that we sum over
 nearest neighbour only.
 
 \begin{equation}
   \label{eq:ising}
-  E_i = -J\sum_{<kl>}^{L^2} s_k s_l
+  E_i = -J\sum_{<kl>}^{N} s_k s_l
+\end{equation}
+The parameter that we can control in our experiment is the temperature it is
+therefore it is natural to
+use the canonical ensemble where temperature is the intensive property, meaning
+that it is a local property that does not depend on the size of the system. The
+mean energy of the system is then given as an expectation value. To calculate
+the expectation value for lets say the energy, we need a probability distribution
+for a given temperature. In the canonical ensemble the probability distribution
+is given by the Boltzmann distribution \cref{eq:Boltzmann}
+
+\begin{equation}\label{eq:Boltzmann}
+  P_i(\beta) = \frac{e^{-\beta E_i}}{Z}
 \end{equation}
 
-We will
-use quadratic grids with grid width L and periodic
-boundary conditions.
+$\beta$ is the inverse temperature times the Boltzmann constant
+($\beta = 1/k_b*T $),  $E_i$ is the energy of a microstate and $Z$
+\cref{eq:partFunc} is the partition function for the canonical ensemble.
+
+\begin{equation}\label{eq:partFunc}
+  Z = \sum_{i=1}^{N} e^{-\beta E_i}
+\end{equation}
+
+The properties which we are interested in, the ,energy $\braket{E}$, heat
+capacity $C_v$,magnetisation $\braket{M}$ and the susceptibility $\chi$ are then given
+by the following expressions.
+\begin{eqnarray}
+  \braket{E} = \frac{1}{Z} \sum_{i=1}^N E_i e^{\beta E_i} \\
+  C_v = \frac{1}{k_B T^2}\left(\braket{E^2} - \braket{E}^2 \right) \\
+  \braket{M} = \frac{1}{Z} \sum_{i=1}^{N} M e^{-\beta E_i} \\
+  \chi = \frac{1}{k_b T}\left(\braket{M^2}- \braket{M}^2\right)
+\end{eqnarray}
 
 
 
@@ -35,7 +64,7 @@ The Metropolis algorithm is a
 
 
 Since the Ising model is a binary system the number of possible microstates is
-2$^{L^2}$. Even for small systems it is therefore computationally expensive to use
+2$^{N^2}$. Even for small systems it is therefore computationally expensive to use
 the brute force method of generating all possible states and calculating
 expectation values. In the next section we do this for L=2.
 
@@ -47,7 +76,7 @@ feasible to find analytic solutions for the values of
 interest. Comparing with the analytical expressions will be useful test of our
 numerical estimates.
 
-We start by calculating the energy for a given configuration.
+We start by calculating the energy for a given microstate.
 
 \begin{align*}
   E_i &= -J \sum_{<k,l>} s_k s_l = -\frac{1}{2}J \sum_{i} \sum_{nn} s_i s_{nn} \\
@@ -69,7 +98,7 @@ generates all the possible states and lists the values we need as shown in
   \label{tab:analytic}
 \end{table}
 
-The probability of a given configuration is given by \cref{eq:prob}, with
+The probability of a given microstate is given by \cref{eq:prob}, with
 the z being a normalization factor to ensure the sum of probabilities are one,
 known as the partition function, given in \cref{eq:partition}.
 
@@ -85,6 +114,10 @@ known as the partition function, given in \cref{eq:partition}.
 \end{equation}
 
 
+\section{Experimental Setup}
+We will
+use quadratic grids with grid width L and periodic
+boundary conditions.
 
 
 \subsection{Equilibrium}
@@ -105,7 +138,7 @@ delay parameter to 50000 in the production runs.
   \centering
   \includegraphics[width=0.8\textwidth]{../figures/equilibrium_E.png}
   \caption{Absolute values of energy for different MC cycles.
-  ord refers to the initial configuration of spins. 1=up, 0=random.}
+  ord refers to the initial microstate of spins. 1=up, 0=random.}
   \label{fig:equi_E}
 \end{figure}
 
@@ -114,7 +147,7 @@ delay parameter to 50000 in the production runs.
   \centering
   \includegraphics[width=0.8\textwidth]{../figures/equilibrium_Mabs.png}
   \caption{Absolute values of magnetization for different MC cycles.
-  ord refers to the initial configuration of spins. 1=up, 0=random.}
+  ord refers to the initial microstate of spins. 1=up, 0=random.}
   \label{fig:equi_M}
 \end{figure}
 
@@ -124,6 +157,7 @@ delay parameter to 50000 in the production runs.
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{../figures/accepted.png}
+<<<<<<< HEAD
   \caption{Accepted configurations scaled with number of spins and MC cycles.
   Unordered initial state. \\
   For T=1.0 there is a rapid decline in the number of accepted
@@ -133,6 +167,9 @@ delay parameter to 50000 in the production runs.
   For T=2.4 there is no downward trend, but an oscillation around $\approx$ 0.2.
   This indicates that system is fluctuating, altough the most likely state is
   reached.}
+=======
+  \caption{Accepted microstates scaled with number of spins and MC cycles.}
+>>>>>>> master
   \label{fig:accepted}
 \end{figure}
 
