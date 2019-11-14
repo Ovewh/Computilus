@@ -1,6 +1,6 @@
 \section{Methods}
 
-The 
+The
 
 Conceptually these systems are quite simple to model,
 consisting of binary spins which can either have the value 1 (up) or -1 (down).
@@ -9,13 +9,13 @@ spins in our system. We evolve our system by randomly selecting spins and
 changing their values if it is energetically favourable for the system. To not
 have our system being stuck in the ground state (lowest energy state) we will randomly flip some spins
 anyway even if it is not energetically favourable, this behaviour is actually
-something for real systems to. 
+something for real systems to.
 \subsection{Ising model}
 The Ising model, without an external magnetic field, is given by
 \cref{eq:ising}, where $E_i$ is the energy of a given microstate s$_k$ and s$_l$ takes values of $\pm 1$, N is the
 number of spins, J is a coupling constant corresponding to the strength of the
 interaction between the neighbouring spins and $<kl>$ means that we are sum over
-nearest neighbour only. 
+nearest neighbour only.
 
 \begin{equation}
   \label{eq:ising}
@@ -30,7 +30,7 @@ boundary conditions.
 
 \subsection{Metropolis algorithm}
 
-The Metropolis algorithm is a 
+The Metropolis algorithm is a
 
 
 
@@ -45,7 +45,7 @@ have infinite number of microstates. Still for a small lattice 2x2, which only
 has 16 microstates it is
 feasible to find analytic solutions for the values of
 interest. Comparing with the analytical expressions will be useful test of our
-numerical estimates. 
+numerical estimates.
 
 We start by calculating the energy for a given configuration.
 
@@ -57,8 +57,10 @@ We start by calculating the energy for a given configuration.
 \end{align*}
 
 To calculate the expectation values we need to know the possible energies and
-magnetizations. The script analytic.py \parencite{github} generates all the
-possible states and lists the values we need as shown in \cref{tab:analytic}.
+magnetizations. The script analytic.py
+\footnote{\url{https://github.com/Ovewh/Computilus/tree/master/Project4}}
+generates all the possible states and lists the values we need as shown in
+\cref{tab:analytic}.
 
 \begin{table}[htp]
   \centering
@@ -122,7 +124,15 @@ delay parameter to 50000 in the production runs.
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{../figures/accepted.png}
-  \caption{Accepted configurations scaled with number of spins and MC cycles.}
+  \caption{Accepted configurations scaled with number of spins and MC cycles.
+  Unordered initial state. \\
+  For T=1.0 there is a rapid decline in the number of accepted
+  configurations with increasing number of MC cycles. The ratio of accepted
+  configurations seem to flatten out at 10$^{-3}$ indicating that the system
+  has reached a low energy stable state with small fluctuations.
+  For T=2.4 there is no downward trend, but an oscillation around $\approx$ 0.2.
+  This indicates that system is fluctuating, altough the most likely state is
+  reached.}
   \label{fig:accepted}
 \end{figure}
 
